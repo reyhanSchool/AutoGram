@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#B0BEBF"
+    tools:context=".SignUpPage">
+
+    <TextView
+        android:id="@+id/welcomePage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="AutoGram"
+        android:textAlignment="center"
+        android:textSize="35sp" />
+
+    <LinearLayout
+        android:id="@+id/signUpContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/userFirstName"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@android:color/white">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/firstNameInput"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Enter your first name" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/userLastName"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@android:color/white">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/lastNameInput"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Enter your last name" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/signUpUsernameInput"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@android:color/white">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/signUpUsername"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Enter your email" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/signUpPasswordInput"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@android:color/white">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/signUpPassword"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Enter your password" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="180dp"
+        android:columnCount="2">
+
+        <Button
+            android:id="@+id/backToLogin"
+            android:layout_width="150dp"
+            android:layout_margin="5dp"
+            android:onClick="this"
+            android:text="Back To Login"
+            tools:ignore="onClick" />
+
+        <Button
+            android:id="@+id/registerUserAccount"
+            android:layout_width="150dp"
+            android:layout_margin="5dp"
+            android:onClick="this"
+            tools:ignore="onClick"
+            android:text="Register"
+            />
+    </GridLayout>
+
+
+</FrameLayout>
