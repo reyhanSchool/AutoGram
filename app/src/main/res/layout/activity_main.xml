@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@color/black">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#000000">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -37,60 +33,72 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="10dp" />
+                android:layout_height="80dp" />
 
-            <SearchView
-                android:id="@+id/searchView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:background="@drawable/bg_white_rounded"
-                android:padding="5dp"
-                android:queryHint="Search Notes..."
-                android:submitBackground="@drawable/bg_white_rounded">
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/userLoginName"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:background="@android:color/white">
 
-            </SearchView>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/usernameInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="Enter your Username" />
+
+                </com.google.android.material.textfield.TextInputLayout>
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="10dp" />
+                android:layout_height="30dp" />
 
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1">
-
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/floatingActionButtonCreateNote"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|right"
-                    android:layout_margin="10dp"
-                    android:clickable="true"
-                    android:src="@android:drawable/ic_input_add" />
-
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="No notes to show."
-                    android:textSize="24sp"
-                    android:visibility="gone"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerView"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/userPassword"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp" />
-            </FrameLayout>
+                    android:layout_height="60dp"
+                    android:background="@android:color/white">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/passwordInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="Enter your password"
+                        tools:ignore="DuplicateClickableBoundsCheck" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            <GridLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="100dp"
+                android:padding="10dp"
+                android:columnCount="2">
+
+                <Button
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/signInButton"
+                    android:text="Sign In"
+                    android:onClick="this"
+                    tools:ignore="onClick"
+                    android:padding="10dp"
+                    android:layout_margin="5dp"
+                    />
+                <Button
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:text="Sign Up"
+                    android:id="@+id/toSignUpPage"
+                    android:padding="10dp"
+                    android:layout_margin="5dp"
+                    android:onClick="this"
+                    tools:ignore="onClick"
+                    />
+            </GridLayout>
+
 
         </LinearLayout>
-    </FrameLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

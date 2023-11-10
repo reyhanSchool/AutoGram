@@ -7,10 +7,17 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class MyDatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "AutoGram.db";
     private static final int DATABASE_VERSION = 15;
+    private static final String FIRST_NAME = "firstName";
+    private static final String LAST_NAME = "lastName";
+    private static final String USERNAME = "username";
+    private static final String EMAIL = "email";
+    private static final String PASSWORD = "password";
+
 
     public MyDatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
+
 
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -19,6 +26,11 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
                 + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + "title TEXT,"
                 + "content TEXT,"
+                + FIRST_NAME + " TEXT,"
+                + LAST_NAME + "TEXT,"
+                + USERNAME + "TEXT,"
+                + EMAIL + "TEXT,"
+                + PASSWORD + "TEXT,"
                 + "image_data BLOB)"
                 + ";");
     }
