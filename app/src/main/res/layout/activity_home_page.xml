@@ -61,15 +61,6 @@
                 android:layout_height="0dp"
                 android:layout_weight="1">
 
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/CreateNoteFloatingButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|right"
-                    android:layout_margin="10dp"
-                    android:clickable="true"
-                    android:src="@android:drawable/ic_input_add" />
-
                 <TextView
                     android:id="@+id/textView3"
                     android:layout_width="wrap_content"
@@ -86,9 +77,15 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerViewHomePage"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/white"
-                    android:layout_margin="10dp" />
+                    android:layout_height="355dp"
+                    android:layout_margin="10dp"
+                    android:background="@color/white" />
+
+                <include
+                    android:layout_height="70dp"
+                    android:layout_width="match_parent"
+                    android:layout_gravity="bottom"
+                    layout="@layout/bottom_navigation" />
             </FrameLayout>
 
         </LinearLayout>
