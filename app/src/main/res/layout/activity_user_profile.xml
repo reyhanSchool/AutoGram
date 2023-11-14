@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     tools:context=".UserProfile">
 
     <GridLayout
@@ -11,12 +12,13 @@
         android:layout_height="150dp"
         android:layout_gravity="top"
         android:layout_margin="10dp"
+        android:background="@color/white"
         android:columnCount="2">
 
 
         <LinearLayout
             android:id="@+id/bioContainer"
-            android:layout_width="240dp"
+            android:layout_width="200dp"
             android:layout_height="match_parent"
             android:layout_marginTop="5dp"
             android:orientation="vertical">
@@ -39,7 +41,7 @@
 
         <ImageView
             android:id="@+id/profilePicture"
-            android:layout_width="150dp"
+            android:layout_width="170dp"
             android:layout_height="match_parent"
             tools:srcCompat="@tools:sample/avatars"
             android:layout_gravity="right"
@@ -52,6 +54,7 @@
         android:layout_height="400dp"
         android:layout_marginTop="10dp"
         android:layout_gravity="center"
+        android:background="@color/white"
         android:layout_below="@id/bioContainer"/>
 
 

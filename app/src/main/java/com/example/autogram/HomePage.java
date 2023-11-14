@@ -26,15 +26,16 @@ public class HomePage extends AppCompatActivity implements SearchView.OnQueryTex
     private List<Note> notes;
 
     //This should be the page after the user has logged in
+    //The recyclerview will display
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_home_page);
 
-        SearchView searchView = findViewById(R.id.searchView);
+        SearchView searchView = findViewById(R.id.searchViewHomePage);
         searchView.setOnQueryTextListener(this);
 
-        FloatingActionButton fab = findViewById(R.id.floatingActionButtonCreateNote);
+        FloatingActionButton fab = findViewById(R.id.CreateNoteFloatingButton);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -45,7 +46,7 @@ public class HomePage extends AppCompatActivity implements SearchView.OnQueryTex
         });
 
         dbHelper = new MyDatabaseHelper(this);
-        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView = findViewById(R.id.recyclerViewHomePage);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         // Read data from the database

@@ -1,5 +1,6 @@
 package com.example.autogram;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -40,5 +41,26 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         // Handle database upgrades here
         db.execSQL("DROP TABLE IF EXISTS your_table_name");
         onCreate(db);
+    }
+
+    //Insert new users into database
+    public long insertDataIntoDatabase(String firstName, String lastName, String username, String email, String password) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(FIRST_NAME, firstName);
+        values.put(LAST_NAME, lastName);
+        values.put(USERNAME, username);
+        values.put(EMAIL, email);
+        values.put(PASSWORD, password);
+
+        // You can add additional columns and values as needed
+
+        long newRowId = db.insert("post", null, values);
+
+        // Close the database connection
+        db.close();
+
+        return newRowId;
     }
 }
