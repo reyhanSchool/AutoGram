@@ -66,8 +66,6 @@ public class SignUpPage extends AppCompatActivity {
          * and also add a profile pic for the user
          * */
 
-
-
     }
 
     //This function will false if one of the text fields is empty

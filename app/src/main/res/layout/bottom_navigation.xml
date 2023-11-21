@@ -17,6 +17,7 @@
             android:background="@color/black"
             android:layout_gravity="center">
             <Button
+                android:id="@+id/toHomePage"
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:text="Home"/>
@@ -38,10 +39,10 @@
                 android:layout_height="match_parent" />
 
             <Button
+                android:id="@+id/toUserProfile"
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:text="Profile"/>
-
 
         </GridLayout>
 
