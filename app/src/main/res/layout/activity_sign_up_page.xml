@@ -7,14 +7,11 @@
     android:background="@color/black"
     tools:context=".SignUpPage">
 
-    <TextView
-        android:id="@+id/welcomePage"
+
+    <include
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="AutoGram"
-        android:textColor="@color/white"
-        android:textAlignment="center"
-        android:textSize="35sp" />
+        android:layout_height="match_parent"
+        layout="@layout/header_with_app_picture" />
 
     <LinearLayout
         android:id="@+id/signUpContainer"

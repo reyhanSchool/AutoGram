@@ -48,8 +48,10 @@ public class SignUpPage extends AppCompatActivity {
                             email.getText().toString(),
                             password.getText().toString());
                     if(newRowId != -1){
+                        //Once the user is successfully added into the database, they should be navigated to CreateUserProfileAndBio page to add
+                        //their profile pic, name nd bio
                         Toast.makeText(SignUpPage.this, "User registered successfully", Toast.LENGTH_SHORT).show();
-                        Intent registered = new Intent(SignUpPage.this, UserProfile.class);
+                        Intent registered = new Intent(SignUpPage.this, CreateUserProfileAndBio.class);
                         startActivity(registered);
                     }else{
                         Toast.makeText(SignUpPage.this, "Error registering User", Toast.LENGTH_SHORT).show();
