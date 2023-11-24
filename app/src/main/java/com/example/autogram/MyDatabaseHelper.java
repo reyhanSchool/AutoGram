@@ -102,4 +102,14 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         db.update("user", values, "id=?", new String[]{String.valueOf(userId)});
         db.close();
     }
+
+    public boolean isEmailValid(String userEmail) {
+        db=this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM user WHERE " +
+                "email = ?", new String[]{userEmail});
+        boolean emailExists=cursor.moveToFirst();
+
+        //Return true if the email is in the database
+        return emailExists;
+    }
 }

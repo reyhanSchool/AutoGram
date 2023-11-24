@@ -15,13 +15,13 @@ import com.google.android.material.textfield.TextInputEditText;
 public class SignUpPage extends AppCompatActivity {
     Button loginReturn, userRegistered;
     TextInputEditText firstname, lastname, email, password;
-    MyDatabaseHelper dbhelper;
+    MyDatabaseHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_page);
-        dbhelper = new MyDatabaseHelper(SignUpPage.this);
+        dbHelper = new MyDatabaseHelper(SignUpPage.this);
 
         loginReturn = findViewById(R.id.backToLogin);
         userRegistered = findViewById(R.id.registerUserAccount);
@@ -49,19 +49,26 @@ public class SignUpPage extends AppCompatActivity {
                     String userEmail = email.getText().toString();
                     String userPassword = password.getText().toString();
 
-                    long newRowId = dbhelper.insertDataIntoDatabase(firstName, lastName, null, userEmail, userPassword);
+                    //check if email is already in the database.
+                    boolean EmailIsSafe = dbHelper.isEmailValid(userEmail);
 
-                    if(newRowId != -1){
-                        //Once the user is successfully added into the database, they should be navigated to CreateUserProfileAndBio page to add
-                        //their profile pic, name nd bio
-                        Toast.makeText(SignUpPage.this, "User registered successfully", Toast.LENGTH_SHORT).show();
-                        Intent registered = new Intent(SignUpPage.this, CreateUserProfileAndBio.class);
-                        // Pass user id as extras to the next activity
-                        registered.putExtra("USER_ID", newRowId);
-                        startActivity(registered);
+                    if(dbHelper.isEmailValid(userEmail)){
+                        long newRowId = dbHelper.insertDataIntoDatabase(firstName, lastName, null, userEmail, userPassword);
+                        if(newRowId != -1){
+                            //Once the user is successfully added into the database, they should be navigated to CreateUserProfileAndBio page to add
+                            //their profile pic, name nd bio
+                            Toast.makeText(SignUpPage.this, "User registered successfully", Toast.LENGTH_SHORT).show();
+                            Intent registered = new Intent(SignUpPage.this, CreateUserProfileAndBio.class);
+                            // Pass user id as extras to the next activity
+                            registered.putExtra("USER_ID", newRowId);
+                            startActivity(registered);
+                        }else{
+                            Toast.makeText(SignUpPage.this, "Error registering User", Toast.LENGTH_SHORT).show();
+                        }
                     }else{
-                        Toast.makeText(SignUpPage.this, "Error registering User", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignUpPage.this,"Email is already registered", Toast.LENGTH_SHORT).show();
                     }
+
                 }else{
                     Toast.makeText(SignUpPage.this, "Please enter all the fields to register", Toast.LENGTH_SHORT).show();
                 }
