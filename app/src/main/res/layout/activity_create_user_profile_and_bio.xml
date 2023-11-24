@@ -30,6 +30,7 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <com.google.android.material.textfield.TextInputLayout
+        android:padding="10dp"
         android:id="@+id/userProfileDisplayName"
         android:layout_width="match_parent"
         android:layout_marginTop="350dp"
@@ -45,6 +46,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        android:padding="10dp"
         android:id="@+id/userProfileBio"
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -65,6 +67,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Submit Info"
+        android:onClick="this"
+        tools:ignore="onClick"
         android:id="@+id/submitInfo"/>
 
 </FrameLayout>

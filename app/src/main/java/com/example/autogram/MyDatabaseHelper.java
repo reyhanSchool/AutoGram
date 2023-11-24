@@ -2,6 +2,7 @@ package com.example.autogram;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -13,6 +14,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     private static final String USERNAME = "username";
     private static final String EMAIL = "email";
     private static final String PASSWORD = "password";
+    SQLiteDatabase db;
 
 
     public MyDatabaseHelper(Context context) {
@@ -45,7 +47,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 
     //Insert new users into database
     public long insertDataIntoDatabase(String firstName, String lastName, String username, String email, String password) {
-        SQLiteDatabase db = this.getWritableDatabase();
+        db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
         values.put(FIRST_NAME, firstName);
@@ -63,4 +65,21 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 
         return newRowId;
     }
+
+    //Check if provided username and password match records in the database
+    public Cursor isValidCredentials(String username, String password){
+        db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM your_table_name WHERE " +
+                "username = ? AND password = ?", new String[]{username, password});
+
+        // Move to the first row of the cursor
+        if (cursor.moveToFirst()) {
+            // Valid credentials, return the cursor containing user information
+            return cursor;
+        } else {
+            // Invalid credentials, return null
+            return null;
+        }
+    }
+
 }
