@@ -31,7 +31,7 @@ public class UserProfile extends AppCompatActivity {
         setContentView(R.layout.activity_user_profile);
         //Retrieve information from MainActivity after user logs in
         Intent intent = getIntent();
-        String userProfileName = intent.getStringExtra("UserProfileUsername");
+        String userProfileName = intent.getStringExtra("USERNAME");
         Toast.makeText(this, userProfileName, Toast.LENGTH_SHORT).show();
         //Find all the elements in the xml file
         profilePic = findViewById(R.id.profilePicture);

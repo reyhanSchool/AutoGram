@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity{
             showToast(userProfileUsername);
             // Start UserProfile activity and pass user information
             Intent userProfileIntent = new Intent(MainActivity.this, UserProfile.class);
-            userProfileIntent.putExtra("userProfileUsername", userProfileUsername);
+            userProfileIntent.putExtra("USERNAME", userProfileUsername);
             startActivity(userProfileIntent);
         }
 

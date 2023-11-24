@@ -46,8 +46,10 @@ TextInputEditText displayName, displayBio;
             public void onClick(View v) {
                 if(validateUsernameInput()){
                     insertIntoDatabase(userId, displayName, displayBio);
+                    String insertDisplayName = displayName.getText().toString();
                     Intent toUserProfile = new Intent(CreateUserProfileAndBio.this, UserProfile.class);
-                    toUserProfile.putExtra("USER_ID", userId);
+                    //passing the displayName to the userProfile page
+                    toUserProfile.putExtra("USERNAME", insertDisplayName);
                     startActivity(toUserProfile);
                 }
             }//onClick
