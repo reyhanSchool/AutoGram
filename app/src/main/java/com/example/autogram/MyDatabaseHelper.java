@@ -30,7 +30,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
                 + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + FIRST_NAME + " TEXT,"
                 + LAST_NAME + " TEXT,"
-                + USERNAME + " TEXT,"
+                + USERNAME + " TEXT," ///Display
                 + EMAIL + " TEXT,"
                 + PASSWORD + " TEXT,"
                 + "profile_pic BLOB,"
