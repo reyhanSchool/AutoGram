@@ -29,7 +29,10 @@ public class UserProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
-
+        //Retrieve information from MainActivity after user logs in
+        Intent intent = getIntent();
+        String userProfileName = intent.getStringExtra("UserProfileUsername");
+        Toast.makeText(this, userProfileName, Toast.LENGTH_SHORT).show();
         //Find all the elements in the xml file
         profilePic = findViewById(R.id.profilePicture);
         profileUsername = findViewById(R.id.usernameDisplay);

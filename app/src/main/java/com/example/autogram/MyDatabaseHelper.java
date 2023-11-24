@@ -14,6 +14,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     private static final String USERNAME = "username";
     private static final String EMAIL = "email";
     private static final String PASSWORD = "password";
+
     SQLiteDatabase db;
 
 
@@ -25,16 +26,24 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         // Create your database tables here
+        db.execSQL("CREATE TABLE IF NOT EXISTS user ("
+                + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + FIRST_NAME + " TEXT,"
+                + LAST_NAME + " TEXT,"
+                + USERNAME + " TEXT,"
+                + EMAIL + " TEXT,"
+                + PASSWORD + " TEXT,"
+                + "profile_pic BLOB,"
+                + "profile_bio TEXT)"
+                + ";");
+
         db.execSQL("CREATE TABLE IF NOT EXISTS post ("
                 + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + "user_id INTEGER,"  // Foreign key referencing the 'user' table
                 + "title TEXT,"
                 + "content TEXT,"
-                + FIRST_NAME + " TEXT,"
-                + LAST_NAME + "TEXT,"
-                + USERNAME + "TEXT,"
-                + EMAIL + "TEXT,"
-                + PASSWORD + "TEXT,"
-                + "image_data BLOB)"
+                + "image_data BLOB,"
+                + "FOREIGN KEY(user_id) REFERENCES user(id))"
                 + ";");
     }
 
@@ -58,7 +67,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 
         // You can add additional columns and values as needed
 
-        long newRowId = db.insert("post", null, values);
+        long newRowId = db.insert("user", null, values);
 
         // Close the database connection
         db.close();
@@ -69,7 +78,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     //Check if provided username and password match records in the database
     public Cursor isValidCredentials(String username, String password){
         db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM your_table_name WHERE " +
+        Cursor cursor = db.rawQuery("SELECT * FROM user WHERE " +
                 "username = ? AND password = ?", new String[]{username, password});
 
         // Move to the first row of the cursor
