@@ -21,6 +21,7 @@ public class SignUpPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_page);
+        dbhelper = new MyDatabaseHelper(SignUpPage.this);
 
         loginReturn = findViewById(R.id.backToLogin);
         userRegistered = findViewById(R.id.registerUserAccount);
@@ -42,16 +43,21 @@ public class SignUpPage extends AppCompatActivity {
             public void onClick(View v) {
 
                 if(validateInput()){
-                    long newRowId = dbhelper.insertDataIntoDatabase( firstname.getText().toString(),
-                            firstname.getText().toString(),
-                            lastname.getText().toString(),
-                            email.getText().toString(),
-                            password.getText().toString());
+                    //String firstName, String lastName, String username, String email, String password
+                    String firstName = firstname.getText().toString();
+                    String lastName = lastname.getText().toString();
+                    String userEmail = email.getText().toString();
+                    String userPassword = password.getText().toString();
+
+                    long newRowId = dbhelper.insertDataIntoDatabase(firstName, lastName, null, userEmail, userPassword);
+
                     if(newRowId != -1){
                         //Once the user is successfully added into the database, they should be navigated to CreateUserProfileAndBio page to add
                         //their profile pic, name nd bio
                         Toast.makeText(SignUpPage.this, "User registered successfully", Toast.LENGTH_SHORT).show();
                         Intent registered = new Intent(SignUpPage.this, CreateUserProfileAndBio.class);
+                        // Pass user id as extras to the next activity
+                        registered.putExtra("USER_ID", newRowId);
                         startActivity(registered);
                     }else{
                         Toast.makeText(SignUpPage.this, "Error registering User", Toast.LENGTH_SHORT).show();
@@ -62,11 +68,6 @@ public class SignUpPage extends AppCompatActivity {
 
             }
         });
-
-        /*Once the user creates an account, they should be taken to a new page to edit their profile
-         * Such as add a profile name that can be different from their first name
-         * and also add a profile pic for the user
-         * */
 
     }
 

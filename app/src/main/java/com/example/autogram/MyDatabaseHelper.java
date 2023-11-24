@@ -14,6 +14,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     private static final String USERNAME = "username";
     private static final String EMAIL = "email";
     private static final String PASSWORD = "password";
+    private static final String PROFILEBIO = "profile_bio";
 
     SQLiteDatabase db;
 
@@ -30,11 +31,11 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
                 + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + FIRST_NAME + " TEXT,"
                 + LAST_NAME + " TEXT,"
-                + USERNAME + " TEXT," ///Display
+                + USERNAME + " TEXT,"
                 + EMAIL + " TEXT,"
                 + PASSWORD + " TEXT,"
                 + "profile_pic BLOB,"
-                + "profile_bio TEXT)"
+                + PROFILEBIO + " TEXT)"
                 + ";");
 
         db.execSQL("CREATE TABLE IF NOT EXISTS post ("
@@ -91,4 +92,14 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    //need to update later to insert a profile pic
+    public void completeUserProfile(long userId, String userDisplayName, String userBio) {
+        db =this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(USERNAME, userDisplayName);
+        values.put(PROFILEBIO, userBio);
+
+        db.update("user", values, "id=?", new String[]{String.valueOf(userId)});
+        db.close();
+    }
 }

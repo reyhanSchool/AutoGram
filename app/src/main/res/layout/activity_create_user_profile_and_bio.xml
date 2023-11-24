@@ -27,10 +27,10 @@
         android:layout_height="150dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="150dp"
-        tools:srcCompat="@tools:sample/avatars" />
+        tools:srcCompat="@tools:sample/avatars"
+        android:visibility="visible"/>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:padding="10dp"
         android:id="@+id/userProfileDisplayName"
         android:layout_width="match_parent"
         android:layout_marginTop="350dp"
@@ -46,7 +46,6 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:padding="10dp"
         android:id="@+id/userProfileBio"
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -56,7 +55,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/displayBio"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:hint="What would you like others to know about you?" />
 
     </com.google.android.material.textfield.TextInputLayout>
