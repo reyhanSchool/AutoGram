@@ -120,7 +120,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 
     public boolean isEmailValid(String userEmail) {
         db=this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM user WHERE " +
+        Cursor cursor = db.rawQuery("SELECT email FROM user WHERE " +
                 "email = ?", new String[]{userEmail});
         boolean emailExists=cursor.moveToFirst();
 
