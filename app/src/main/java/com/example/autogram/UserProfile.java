@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -25,6 +26,7 @@ public class UserProfile extends AppCompatActivity {
     private RecyclerView userPosting;
     private FloatingActionButton createPost;
     private Button toHome, toUserProfile;
+    MyDatabaseHelper dbHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +35,7 @@ public class UserProfile extends AppCompatActivity {
         Intent intent = getIntent();
         String userProfileName = intent.getStringExtra("USERNAME");
         Toast.makeText(this, userProfileName, Toast.LENGTH_SHORT).show();
+        dbHelper = new MyDatabaseHelper(this);
         //Find all the elements in the xml file
         profilePic = findViewById(R.id.profilePicture);
         profileUsername = findViewById(R.id.usernameDisplay);
@@ -41,6 +44,14 @@ public class UserProfile extends AppCompatActivity {
         createPost = findViewById(R.id.CreateNoteFloatingButton);
         toHome = findViewById(R.id.toHomePage);
         toUserProfile = findViewById(R.id.toUserProfile);
+
+        //Get user bio
+        profileBio.setText(dbHelper.getUserBio(userProfileName));
+        //Get the user display name aka username
+        profileUsername.setText(userProfileName);
+
+        //Get all the posts that the user has made;
+
 
         //to Navigate to the home page where it shows the feed
         toHome.setOnClickListener(new View.OnClickListener() {

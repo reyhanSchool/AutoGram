@@ -112,4 +112,19 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         //Return true if the email is in the database
         return emailExists;
     }
+
+    //This function should return the user bio from the database
+    public String getUserBio(String userProfileName) {
+        db=this.getReadableDatabase();
+        String query = "SELECT " + PROFILEBIO +
+                " FROM user" +
+                " WHERE " + USERNAME + " = ?";
+
+        Cursor cursor = db.rawQuery(query, new String[]{userProfileName});
+        String userBio = null;
+        if(cursor.moveToFirst()){
+            userBio = cursor.getString(cursor.getColumnIndexOrThrow(PROFILEBIO));
+        }
+        return userBio;
+    }
 }
