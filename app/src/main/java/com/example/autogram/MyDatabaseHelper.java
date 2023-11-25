@@ -6,6 +6,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MyDatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "AutoGram.db";
     private static final int DATABASE_VERSION = 15;
@@ -15,6 +18,9 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     private static final String EMAIL = "email";
     private static final String PASSWORD = "password";
     private static final String PROFILEBIO = "profile_bio";
+    private static final String SUBSCRIPTION_TABLE = "subscription";
+    private static final String SUBSCRIPTION_ID = "subscription_id";
+    private static final String SUBSCRIBER_ID = "subscriber_id";
 
     SQLiteDatabase db;
 
@@ -45,6 +51,15 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
                 + "content TEXT,"
                 + "image_data BLOB,"
                 + "FOREIGN KEY(user_id) REFERENCES user(id))"
+                + ";");
+
+        // Create a table for tracking subscriptions
+        db.execSQL("CREATE TABLE IF NOT EXISTS " + SUBSCRIPTION_TABLE + " ("
+                + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + SUBSCRIBER_ID + " INTEGER,"
+                + SUBSCRIPTION_ID + " INTEGER,"
+                + "FOREIGN KEY(" + SUBSCRIBER_ID + ") REFERENCES user(id),"
+                + "FOREIGN KEY(" + SUBSCRIPTION_ID + ") REFERENCES user(id))"
                 + ";");
     }
 
@@ -127,4 +142,61 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         }
         return userBio;
     }
+
+    //Method to insert a subscription
+    public long insertSubscription(long subscriberId, long subcriptionId){
+        db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(SUBSCRIPTION_ID, subcriptionId);
+        values.put(SUBSCRIPTION_ID, subcriptionId);
+        long newRowId = db.insert(SUBSCRIPTION_TABLE, null, values);
+        db.close();
+        return newRowId;
+    }
+
+    //Method to remove a subscription
+    public int removeSubscription(long subscriberId, long subscriptionId){
+        db=this.getReadableDatabase();
+        int rowsDeleted = db.delete(
+                SUBSCRIPTION_TABLE,
+                SUBSCRIBER_ID + " = ? AND " + SUBSCRIPTION_ID + " = ?",
+                new String[]{String.valueOf(subscriberId), String.valueOf(subscriptionId)}
+        );
+
+        // Close the database connection
+        db.close();
+
+        return rowsDeleted;
+    }
+
+    // Add a method to retrieve the list of subscribed IDs for a user
+    public List<Long> getSubscribedIds(long subscriberId) {
+        db = this.getReadableDatabase();
+
+        List<Long> subscribedIds = new ArrayList<>();
+
+        String query = "SELECT " + SUBSCRIPTION_ID +
+                " FROM " + SUBSCRIPTION_TABLE +
+                " WHERE " + SUBSCRIBER_ID + " = ?";
+
+        Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(subscriberId)});
+
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                long subscriptionId = cursor.getLong(cursor.getColumnIndexOrThrow(SUBSCRIPTION_ID));
+                subscribedIds.add(subscriptionId);
+            } while (cursor.moveToNext());
+
+            // Close the cursor
+            cursor.close();
+        }
+
+        // Close the database
+        db.close();
+
+        return subscribedIds;
+    }
+
+
 }
