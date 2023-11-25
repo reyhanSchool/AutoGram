@@ -23,12 +23,15 @@
 
     <ImageView
         android:id="@+id/uploadProfilePic"
-        android:layout_width="150dp"
+        android:layout_width="200dp"
         android:layout_height="150dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="150dp"
-        tools:srcCompat="@tools:sample/avatars"
-        android:visibility="visible"/>
+        android:clickable="true"
+        android:onClick="showPopup"
+        android:padding="10dp"
+        android:visibility="visible"
+        android:src="@drawable/add_photo" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/userProfileDisplayName"

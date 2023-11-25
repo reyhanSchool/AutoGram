@@ -45,6 +45,8 @@ public class HomePage extends AppCompatActivity implements SearchView.OnQueryTex
             }
         });
 
+        //The notes should display only who the user follows (is subscribed to) and shown in chronological order
+        //However if the user is subscribed to no one, all the posts in the database should be displayed
         dbHelper = new MyDatabaseHelper(this);
         recyclerView = findViewById(R.id.recyclerViewHomePage);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

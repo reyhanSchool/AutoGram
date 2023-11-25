@@ -60,7 +60,7 @@ TextInputEditText displayName, displayBio;
         uploadProfilePic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showImageSourceDialog();
+
             }
         });
 
@@ -73,22 +73,27 @@ TextInputEditText displayName, displayBio;
         dbHelper.completeUserProfile(userId, userDisplayName, userBio);
     }
 
-    private void showImageSourceDialog() {
+    private void showPopup(View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Select Image Source");
-        builder.setItems(new CharSequence[]{"Camera", "Gallery"}, new DialogInterface.OnClickListener() {
+
+        //Add a button for Gallery
+        builder.setNeutralButton("Gallery", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                switch(which){
-                    case 0:
-                        dispatchTakePictureIntent();
-                        break;
-                    case 1:
-                        openGallery();
-                        break;
-                }
+                //openGallery will handle opening the gallery and selecting the photo to be used
+                openGallery();
             }
-        });//end of builder.setItems
+        });
+
+        //Add the button for camera
+        builder.setNeutralButton("Camera", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //dispatchTackPictureIntent will handle using the camera to take the photo.
+                dispatchTakePictureIntent();
+            }
+        });
     }
 
     //To open the photo gallery and select a photo
