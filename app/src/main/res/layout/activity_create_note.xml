@@ -30,7 +30,7 @@
                 android:orientation="horizontal">
 
                 <ImageButton
-                    android:id="@+id/imageButton"
+                    android:id="@+id/cancelUpload"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -39,7 +39,7 @@
                     app:tint="#6750A3" />
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/pageTitle"
                     android:layout_width="200dp"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
@@ -68,7 +68,7 @@
                 android:layout_height="30dp" />
 
             <EditText
-                android:id="@+id/editTextText"
+                android:id="@+id/postTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#FFFFFF"
@@ -86,7 +86,7 @@
                 android:layout_height="30dp" />
 
             <EditText
-                android:id="@+id/editTextTextMultiLine2"
+                android:id="@+id/postDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#FFFFFF"
@@ -102,67 +102,8 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="30dp" />
+                android:layout_height="60dp" />
 
-            <!-- Add color options as colored tags -->
-            <LinearLayout
-                android:id="@+id/ColorTagLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal"
-                android:visibility="invisible">
-
-                <ImageButton
-                    style="@style/Widget.AppCompat.ImageButton"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:background="#AEDAD6"
-                    android:contentDescription="Teal"
-                    android:onClick="onColorTagClicked" />
-
-                <Space
-                    android:layout_width="10dp"
-                    android:layout_height="32dp" />
-
-                <ImageButton
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:background="#E39CBD"
-                    android:contentDescription="#E39CBD"
-                    android:onClick="onColorTagClicked" />
-
-
-                <Space
-                    android:layout_width="10dp"
-                    android:layout_height="32dp" />
-
-                <ImageButton
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:background="#ECAA86"
-                    android:contentDescription="#ECAA86"
-                    android:onClick="onColorTagClicked" />
-
-                <Space
-                    android:layout_width="10dp"
-                    android:layout_height="32dp" />
-
-                <ImageButton
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:background="#B59CE3"
-                    android:contentDescription="#B59CE3"
-                    android:onClick="onColorTagClicked"
-                    android:outlineSpotShadowColor="#000000" />
-                <!-- Add more color tags as needed -->
-
-            </LinearLayout>
-
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="30dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -225,16 +166,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="25dp" />
 
-            <TextView
-                android:id="@+id/ErrorMessage"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Error: Please enter a non-empty string for the title."
-                android:textAlignment="center"
-                android:textColor="#B11F1F"
-                android:textStyle="bold"
-                android:visibility="gone" />
-
             <LinearLayout
                 android:id="@+id/selectedImageLayout"
                 android:layout_width="match_parent"
@@ -244,7 +175,7 @@
                 android:visibility="visible">
 
                 <TextView
-                    android:id="@+id/selectedImageText"
+                    android:id="@+id/photoAssociatedWithPost"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -264,7 +195,7 @@
                     android:src="@android:drawable/ic_menu_gallery" />
 
                 <ImageView
-                    android:id="@+id/selectedImageView"
+                    android:id="@+id/userSelectedPhoto"
                     android:layout_width="148dp"
                     android:layout_height="150dp"
                     android:padding="20dp"

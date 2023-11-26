@@ -48,6 +48,7 @@ public class HomePage extends AppCompatActivity implements SearchView.OnQueryTex
             public void onClick(View view) {
                 // Start the new activity
                 Intent createNote = new Intent(HomePage.this, create_note.class);
+                createNote.putExtra("USERNAME", userProfileName);
                 startActivity(createNote);
             }
         });
@@ -57,6 +58,7 @@ public class HomePage extends AppCompatActivity implements SearchView.OnQueryTex
             @Override
             public void onClick(View v) {
                 Intent navigateHome = new Intent(HomePage.this, HomePage.class);
+                navigateHome.putExtra("USERNAME", userProfileName);
                 startActivity(navigateHome);
             }
         });

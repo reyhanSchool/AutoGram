@@ -30,7 +30,7 @@
             android:layout_weight="0" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/postOwnerUsername"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -70,7 +70,7 @@
         <!-- Set the color you want for the line -->
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/postImage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -88,7 +88,7 @@
             android:orientation="horizontal">
 
             <ImageButton
-                android:id="@+id/imageButton3"
+                android:id="@+id/likeButton"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_weight="0"
@@ -97,7 +97,7 @@
                 android:src="@drawable/likebutton" />
 
             <ImageButton
-                android:id="@+id/imageButton5"
+                android:id="@+id/commentButton"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_weight="0"
@@ -106,7 +106,7 @@
                 android:src="@drawable/commentbutton" />
 
             <ImageButton
-                android:id="@+id/imageButton6"
+                android:id="@+id/moreOptionsButton"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_weight="0"
@@ -117,14 +117,14 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/likes"
+            android:id="@+id/totalLikes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="5 Likes"
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/date"
+            android:id="@+id/postCreatedDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="March 16, 2022"

@@ -5,7 +5,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -199,4 +203,48 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     }
 
 
+    public void insertPhotoIntoDatabase(String userProfileName, String title, String content, Bitmap postPhotoConverted) {
+        db = this.getWritableDatabase();
+
+        //Find the user_id with the given userProfileName
+        long userID = getUserIdByUsername(userProfileName);
+
+        if(userID != -1){
+            ContentValues values = new ContentValues();
+            values.put("user_id", userID);
+            values.put("title", title);
+            values.put("content", content);
+
+            //Convert the Bitmap to BLOB
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            postPhotoConverted.compress(Bitmap.CompressFormat.PNG, 100, stream);
+            byte[] byteArray = stream.toByteArray();
+            values.put("image_data", byteArray);
+
+            //insert to database
+            db.insert("post", null, values);
+
+        }
+
+        db.close();
+    }
+
+    private long getUserIdByUsername(String username){
+        db = this.getReadableDatabase();
+
+        String query = "SELECT id FROM user WHERE " + USERNAME + " = ?";
+        Cursor cursor = db.rawQuery(query, new String[]{username});
+
+        long userId = -1; // Default value if the username is not found
+
+        if (cursor != null && cursor.moveToFirst()) {
+            userId = cursor.getLong(cursor.getColumnIndexOrThrow("id"));
+            cursor.close(); // Close the cursor after extracting the value
+        }
+
+        // Close the database connection
+        db.close();
+
+        return userId;
+    }
 }
