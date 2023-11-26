@@ -45,9 +45,9 @@
                 android:background="@drawable/bg_white_rounded"
                 android:padding="5dp"
                 android:queryHint="Search Notes..."
-                android:submitBackground="@drawable/bg_white_rounded">
+                android:submitBackground="@drawable/bg_white_rounded"/>
 
-            </SearchView>
+
 
             <Space
                 android:layout_width="match_parent"

@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -24,6 +25,8 @@ public class HomePage extends AppCompatActivity implements SearchView.OnQueryTex
     private MyDatabaseHelper dbHelper;
     private PostAdapter postAdapter;
     private List<Note> notes;
+    private FloatingActionButton createNewNote;
+    Button toHome,toProfile;
 
     //This should be the page after the user has logged in
     //The recyclerview will display
@@ -32,16 +35,40 @@ public class HomePage extends AppCompatActivity implements SearchView.OnQueryTex
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
+        //Getting the username parameter passed from the userprofile page
+        Intent getUsername = getIntent();
+        String userProfileName = getUsername.getStringExtra("USERNAME");
+
         SearchView searchView = findViewById(R.id.searchViewHomePage);
         searchView.setOnQueryTextListener(this);
 
-        FloatingActionButton fab = findViewById(R.id.CreateNoteFloatingButton);
-        fab.setOnClickListener(new View.OnClickListener() {
+        createNewNote = findViewById(R.id.CreateNoteFloatingButton);
+        createNewNote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Start the new activity
-                Intent intent = new Intent(HomePage.this, create_note.class);
-                startActivity(intent);
+                Intent createNote = new Intent(HomePage.this, create_note.class);
+                startActivity(createNote);
+            }
+        });
+
+        toHome = findViewById(R.id.toHomePage);
+        toHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent navigateHome = new Intent(HomePage.this, HomePage.class);
+                startActivity(navigateHome);
+            }
+        });
+
+        toProfile = findViewById(R.id.toUserProfile);
+        toProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //passing the username parameter along with the intent
+                Intent toProfilePage = new Intent(HomePage.this, UserProfile.class);
+                toProfilePage.putExtra("USERNAME", userProfileName);
+                startActivity(toProfilePage);
             }
         });
 

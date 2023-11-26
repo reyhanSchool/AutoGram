@@ -34,7 +34,8 @@ public class UserProfile extends AppCompatActivity {
         //Retrieve information from MainActivity after user logs in
         Intent intent = getIntent();
         String userProfileName = intent.getStringExtra("USERNAME");
-        Toast.makeText(this, userProfileName, Toast.LENGTH_SHORT).show();
+
+
         dbHelper = new MyDatabaseHelper(this);
         //Find all the elements in the xml file
         profilePic = findViewById(R.id.profilePicture);
@@ -58,6 +59,7 @@ public class UserProfile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent toHomePage = new Intent(UserProfile.this, HomePage.class);
+                toHomePage.putExtra("USERNAME", userProfileName);
                 startActivity(toHomePage);
             }
         });
