@@ -87,18 +87,17 @@ public class create_note extends AppCompatActivity {
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //dbHelper.insertPhotoIntoDatabase(userProfileName, title, content, postPhotoConverted);
+                /*postTitle = findViewById(R.id.postTitle);
+        postDescription = findViewById(R.id.postDescription);
+        postPhoto = findViewById(R.id.userSelectedPhoto); */
+
+                // Extract the text entered by the user
+                String title = postTitle.getText().toString();
+                String content = postDescription.getText().toString();
+                dbHelper.deletePhotoFromDatabase(userProfileName, title, content);
                 Intent deleteAction = new Intent(create_note.this, HomePage.class);
 
-                // get the note id
-                if (deleteAction != null) {
-                    int key = deleteAction.getIntExtra("key", -1);
-                    Log.i("Key", String.valueOf(key));
-                    if (key > -1) {
-                        // delete note
-                        deleteNoteFromDatabase(key);
-                    }
-                }
-                deleteAction.putExtra("USERNAME", userProfileName);
                 startActivity(deleteAction);
             }
         });
@@ -217,29 +216,8 @@ public class create_note extends AppCompatActivity {
             }
         });
 
-    }
+    } //End of OnCreate
 
-
-    private void deleteNoteFromDatabase(int noteId) {
-        MyDatabaseHelper dbHelper = new MyDatabaseHelper(create_note.this);
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-
-        int rowsAffected = db.delete(
-                "post",
-                "id = ?",
-                new String[]{String.valueOf(noteId)}
-        );
-
-        db.close();
-
-        if (rowsAffected > 0) {
-            // The note has been deleted successfully
-            Log.i("DeleteNote", "Note deleted successfully");
-        } else {
-            // No rows were deleted; the note might not exist
-            Log.e("DeleteNote", "Error deleting the note");
-        }
-    }
     private Note getNoteFromDatabase(int noteId) {
         MyDatabaseHelper dbHelper = new MyDatabaseHelper(this);
         SQLiteDatabase db = dbHelper.getReadableDatabase();

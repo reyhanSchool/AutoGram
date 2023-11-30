@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
@@ -246,5 +247,24 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         db.close();
 
         return userId;
+    }
+
+    public void deletePhotoFromDatabase(String userProfileName, String title, String content) {
+        db = this.getWritableDatabase();
+        int wasDeleted=0;
+        // Find the user_id with the given userProfileName
+        long userId = getUserIdByUsername(userProfileName);
+
+        if (userId != -1) {
+            // Define the WHERE clause to match the title, content, and user_id
+            String whereClause = "title = ? AND content = ?";
+            String[] whereArgs = {title, content};
+
+            // Delete the post from the 'post' table
+            db.delete("post", whereClause, whereArgs);
+        }
+
+        // Close the database connection
+        db.close();
     }
 }
