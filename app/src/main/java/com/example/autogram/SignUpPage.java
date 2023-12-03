@@ -48,12 +48,11 @@ public class SignUpPage extends AppCompatActivity {
                     String lastName = lastname.getText().toString();
                     String userEmail = email.getText().toString();
                     String userPassword = password.getText().toString();
-
                     //check if email is already in the database.
                     boolean EmailIsSafe = dbHelper.isEmailValid(userEmail);
 
-                    if(dbHelper.isEmailValid(userEmail)){
-                        long newRowId = dbHelper.insertDataIntoDatabase(firstName, lastName, null, userEmail, userPassword);
+                    if(!dbHelper.isEmailValid(userEmail)){
+                        long newRowId = dbHelper.insertDataIntoDatabase(firstName, lastName, null , userEmail, userPassword);
                         if(newRowId != -1){
                             //Once the user is successfully added into the database, they should be navigated to CreateUserProfileAndBio page to add
                             //their profile pic, name nd bio

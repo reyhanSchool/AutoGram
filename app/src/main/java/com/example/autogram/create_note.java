@@ -1,6 +1,7 @@
 package com.example.autogram;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -12,6 +13,7 @@ import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -26,6 +28,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
@@ -53,6 +57,7 @@ public class create_note extends AppCompatActivity {
     ImageView postPhoto = null;
     Button deleteButton, createNoteButton;
     MyDatabaseHelper dbHelper;
+    private static final int REQUEST_IMAGE_CAPTURE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +78,12 @@ public class create_note extends AppCompatActivity {
 
         Intent intent = getIntent();
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                // Camera permission has not been granted, request it
+                requestPermissions(new String[]{Manifest.permission.CAMERA}, REQUEST_IMAGE_CAPTURE);
+            }
+        }
 
         toHome.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -168,53 +179,22 @@ public class create_note extends AppCompatActivity {
             }
         });
 
-
-
-        cameraLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
-            if (result.getResultCode() == RESULT_OK) {
-                if (result.getData() != null) {
-                    // The image is captured and saved to the specified file. Use the file you created earlier.
-                    Uri photoUri = FileProvider.getUriForFile(this, "com.example.autogram.fileprovider", imageFile);
-
-
-                    postPhoto.setImageURI(photoUri);
-                    findViewById(R.id.selectedImageLayout).setVisibility(View.VISIBLE);
-                } else {
-                    Log.i("Camera Result", "Result data is null");
-                }
-            } else {
-                Log.i("Camera Result", "Result code is not RESULT_OK");
-            }
-        });
-
-
-        Button openCameraButton = findViewById(R.id.openCameraButton);
-        openCameraButton.setOnClickListener(v -> {
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                // Permission is not granted, request it.
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, CAMERA_REQUEST);
-            } else {
-                // Permission is already granted, proceed with camera functionality.
-                PackageManager packageManager = getPackageManager();
-                if (!packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY)) {
-                    Toast.makeText(getApplicationContext(), "No camera available on this device", Toast.LENGTH_SHORT).show();
-                } else {
-                    // Create an image file where the captured image will be saved
-                    try {
-                        imageFile = createImageFile();
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
+        cameraLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                new ActivityResultCallback<ActivityResult>() {
+                    @Override
+                    public void onActivityResult(ActivityResult result) {
+                        handleCameraResult(result);
                     }
-
-                    // Get the content URI using FileProvider
-                    Uri photoUri = FileProvider.getUriForFile(this, "com.example.autogram.fileprovider", imageFile);
-                    // Start the camera app and pass the photoUri for image capture
-                    Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
-                    cameraLauncher.launch(cameraIntent);
                 }
+        );
+
+
+            Button openCameraButton = findViewById(R.id.openCameraButton);
+            openCameraButton.setOnClickListener(v -> {
+                cameraMethod();
             }
-        });
+        );
 
     } //End of OnCreate
 
@@ -284,10 +264,40 @@ public class create_note extends AppCompatActivity {
             Log.e("UpdateNote", "Error updating the note");
         }
     }
+
     private byte[] bitmapToByteArray(Bitmap bitmap) {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
         return stream.toByteArray();
     }
+
+    private void cameraMethod() {
+        // Create an intent to capture an image using the camera
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        // Launch the camera activity and handle the result using cameraLauncher
+        cameraLauncher.launch(takePictureIntent);
+    }
+
+    private void handleCameraResult(ActivityResult result) {
+        if (result.getResultCode() == Activity.RESULT_OK) {
+            Intent data = result.getData();
+            if (data != null) {
+                Bundle extras = data.getExtras();
+                if (extras != null) {
+                    Bitmap imageBitmap = (Bitmap) extras.get("data"); // Retrieve the captured image bitmap
+
+                    // Display the captured image in an ImageView
+                    postPhoto.setImageBitmap(imageBitmap);
+                }
+            }
+        } else if (result.getResultCode() == Activity.RESULT_CANCELED) {
+            // The image capture was canceled by the user
+            Toast.makeText(create_note.this, "Image capture canceled", Toast.LENGTH_SHORT).show();
+        } else {
+            // The image capture failed, handle this situation if necessary
+            Toast.makeText(create_note.this, "Image capture failed", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 }
 

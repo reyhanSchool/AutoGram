@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity{
 
         private void navigateToUserProfile(Cursor userCursor) {
             // Extract user information from the cursor
-            @SuppressLint("Range") String userProfileUsername = userCursor.getString(userCursor.getColumnIndex("Username"));
+            @SuppressLint("Range") String userProfileUsername = userCursor.getString(userCursor.getColumnIndex("username"));
             showToast(userProfileUsername);
             // Start UserProfile activity and pass user information
             Intent userProfileIntent = new Intent(MainActivity.this, UserProfile.class);

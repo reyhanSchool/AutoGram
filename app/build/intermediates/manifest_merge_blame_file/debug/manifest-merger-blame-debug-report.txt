@@ -1,0 +1,129 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.autogram"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="33"
+9        android:targetSdkVersion="33" />
+10
+11    <uses-feature android:name="android.hardware.camera" />
+11-->C:\Users\nived\OneDrive\Desktop\Nived\4thYearCourses\MobileAppDev\FinalProject\AutoGram\app\src\main\AndroidManifest.xml:4:5-5:49
+11-->C:\Users\nived\OneDrive\Desktop\Nived\4thYearCourses\MobileAppDev\FinalProject\AutoGram\app\src\main\AndroidManifest.xml:5:9-47
+12
+13    <uses-permission android:name="android.permission.CAMERA" />
+13-->C:\Users\nived\OneDrive\Desktop\Nived\4thYearCourses\MobileAppDev\FinalProject\AutoGram\app\src\main\AndroidManifest.xml:6:5-65
+13-->C:\Users\nived\OneDrive\Desktop\Nived\4thYearCourses\MobileAppDev\FinalProject\AutoGram\app\src\main\AndroidManifest.xml:6:22-62
+14    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+14-->C:\Users\nived\OneDrive\Desktop\Nived\4thYearCourses\MobileAppDev\FinalProject\AutoGram\app\src\main\AndroidManifest.xml:7:5-80
+14-->C:\Users\nived\OneDrive\Desktop\Nived\4thYearCourses\MobileAppDev\FinalProject\AutoGram\app\src\main\AndroidManifest.xml:7:22-77
+15
+16    <uses-feature android:name="android.hardware.camera.autofocus" />
+16-->C:\Users\nived\OneDrive\Desktop\Nived\4thYearCourses\MobileAppDev\FinalProject\AutoGram\app\src\main\AndroidManifest.xml:8:5-70
+16-->C:\Users\nived\OneDrive\Desktop\Nived\4thYearCourses\MobileAppDev\FinalProject\AutoGram\app\src\main\AndroidManifest.xml:8:19-67
+17
+18    <permission
+18-->[androidx.core:core:1.9.0] C:\Users\nived\.gradle\caches\transforms-3\0bb5616a7558933ce9ef66db5210a361\transformed\core-1.9.0\AndroidManifest.xml:22:5-24:47
+19        android:name="com.example.autogram.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+19-->[androidx.core:core:1.9.0] C:\Users\nived\.gradle\caches\transforms-3\0bb5616a7558933ce9ef66db5210a361\transformed\core-1.9.0\AndroidManifest.xml:23:9-81
+20        android:protectionLevel="signature" />
+20-->[androidx.core:core:1.9.0] C:\Users\nived\.gradle\caches\transforms-3\0bb5616a7558933ce9ef66db5210a361\transformed\core-1.9.0\AndroidManifest.xml:24:9-44
+21
+22    <uses-permission android:name="com.example.autogram.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+22-->[androidx.core:core:1.9.0] C:\Users\nived\.gradle\caches\transforms-3\0bb5616a7558933ce9ef66db5210a361\transformed\core-1.9.0\AndroidManifest.xml:26:5-97
+22-->[androidx.core:core:1.9.0] C:\Users\nived\.gradle\caches\transforms-3\0bb5616a7558933ce9ef66db5210a361\transformed\core-1.9.0\AndroidManifest.xml:26:22-94
+23
+24    <application
+24-->C:\Users\nived\OneDrive\Desktop\Nived\4thYearCourses\MobileAppDev\FinalProject\AutoGram\app\src\main\AndroidManifest.xml:9:5-41:19
+25        android:allowBackup="true"
+25-->C:\Users\nived\OneDrive\Desktop\Nived\4thYearCourses\MobileAppDev\FinalProject\AutoGram\app\src\main\AndroidManifest.xml:10:9-35
+26        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+26-->[androidx.core:core:1.9.0] C:\Users\nived\.gradle\caches\transforms-3\0bb5616a7558933ce9ef66db5210a361\transformed\core-1.9.0\AndroidManifest.xml:28:18-86
+27        android:dataExtractionRules="@xml/data_extraction_rules"
+27-->C:\Users\nived\OneDrive\Desktop\Nived\4thYearCourses\MobileAppDev\FinalProject\AutoGram\app\src\main\AndroidManifest.xml:11:9-65
+28        android:debuggable="true"
+29        android:extractNativeLibs="false"
+30        android:fullBackupContent="@xml/backup_rules"
+30-->C:\Users\nived\OneDrive\Desktop\Nived\4thYearCourses\MobileAppDev\FinalProject\AutoGram\app\src\main\AndroidManifest.xml:12:9-54
+31        android:icon="@drawable/logonocolor"
+31-->C:\Users\nived\OneDrive\Desktop\Nived\4thYearCourses\MobileAppDev\FinalProject\AutoGram\app\src\main\AndroidManifest.xml:13:9-45
+32        android:roundIcon="@drawable/logonocolor"
+32-->C:\Users\nived\OneDrive\Desktop\Nived\4thYearCourses\MobileAppDev\FinalProject\AutoGram\app\src\main\AndroidManifest.xml:14:9-50
+33        android:supportsRtl="true"
+33-->C:\Users\nived\OneDrive\Desktop\Nived\4thYearCourses\MobileAppDev\FinalProject\AutoGram\app\src\main\AndroidManifest.xml:15:9-35
+34        android:testOnly="true"
+35        android:theme="@style/Theme.AutoGram" >
+35-->C:\Users\nived\OneDrive\Desktop\Nived\4thYearCourses\MobileAppDev\FinalProject\AutoGram\app\src\main\AndroidManifest.xml:16:9-46
+36        <activity
+36-->C:\Users\nived\OneDrive\Desktop\Nived\4thYearCourses\MobileAppDev\FinalProject\AutoGram\app\src\main\AndroidManifest.xml:18:9-20:40
+37            android:name="com.example.autogram.CreateUserProfileAndBio"
+37-->C:\Users\nived\OneDrive\Desktop\Nived\4thYearCourses\MobileAppDev\FinalProject\AutoGram\app\src\main\AndroidManifest.xml:19:13-52
+38            android:exported="false" />
+38-->C:\Users\nived\OneDrive\Desktop\Nived\4thYearCourses\MobileAppDev\FinalProject\AutoGram\app\src\main\AndroidManifest.xml:20:13-37
+39        <activity
+39-->C:\Users\nived\OneDrive\Desktop\Nived\4thYearCourses\MobileAppDev\FinalProject\AutoGram\app\src\main\AndroidManifest.xml:21:9-23:40
+40            android:name="com.example.autogram.HomePage"
+40-->C:\Users\nived\OneDrive\Desktop\Nived\4thYearCourses\MobileAppDev\FinalProject\AutoGram\app\src\main\AndroidManifest.xml:22:13-37
+41            android:exported="false" />
+41-->C:\Users\nived\OneDrive\Desktop\Nived\4thYearCourses\MobileAppDev\FinalProject\AutoGram\app\src\main\AndroidManifest.xml:23:13-37
+42        <activity
+42-->C:\Users\nived\OneDrive\Desktop\Nived\4thYearCourses\MobileAppDev\FinalProject\AutoGram\app\src\main\AndroidManifest.xml:25:9-26:39
+43            android:name="com.example.autogram.SignUpPage"
+43-->C:\Users\nived\OneDrive\Desktop\Nived\4thYearCourses\MobileAppDev\FinalProject\AutoGram\app\src\main\AndroidManifest.xml:25:19-45
+44            android:exported="false" />
+44-->C:\Users\nived\OneDrive\Desktop\Nived\4thYearCourses\MobileAppDev\FinalProject\AutoGram\app\src\main\AndroidManifest.xml:26:13-37
+45        <activity
+45-->C:\Users\nived\OneDrive\Desktop\Nived\4thYearCourses\MobileAppDev\FinalProject\AutoGram\app\src\main\AndroidManifest.xml:27:9-28:39
+46            android:name="com.example.autogram.UserProfile"
+46-->C:\Users\nived\OneDrive\Desktop\Nived\4thYearCourses\MobileAppDev\FinalProject\AutoGram\app\src\main\AndroidManifest.xml:27:19-46
+47            android:exported="false" />
+47-->C:\Users\nived\OneDrive\Desktop\Nived\4thYearCourses\MobileAppDev\FinalProject\AutoGram\app\src\main\AndroidManifest.xml:28:13-37
+48        <activity
+48-->C:\Users\nived\OneDrive\Desktop\Nived\4thYearCourses\MobileAppDev\FinalProject\AutoGram\app\src\main\AndroidManifest.xml:29:9-37:20
+49            android:name="com.example.autogram.MainActivity"
+49-->C:\Users\nived\OneDrive\Desktop\Nived\4thYearCourses\MobileAppDev\FinalProject\AutoGram\app\src\main\AndroidManifest.xml:30:13-41
+50            android:exported="true" >
+50-->C:\Users\nived\OneDrive\Desktop\Nived\4thYearCourses\MobileAppDev\FinalProject\AutoGram\app\src\main\AndroidManifest.xml:31:13-36
+51            <intent-filter>
+51-->C:\Users\nived\OneDrive\Desktop\Nived\4thYearCourses\MobileAppDev\FinalProject\AutoGram\app\src\main\AndroidManifest.xml:32:13-36:29
+52                <action android:name="android.intent.action.MAIN" />
+52-->C:\Users\nived\OneDrive\Desktop\Nived\4thYearCourses\MobileAppDev\FinalProject\AutoGram\app\src\main\AndroidManifest.xml:33:17-69
+52-->C:\Users\nived\OneDrive\Desktop\Nived\4thYearCourses\MobileAppDev\FinalProject\AutoGram\app\src\main\AndroidManifest.xml:33:25-66
+53
+54                <category android:name="android.intent.category.LAUNCHER" />
+54-->C:\Users\nived\OneDrive\Desktop\Nived\4thYearCourses\MobileAppDev\FinalProject\AutoGram\app\src\main\AndroidManifest.xml:35:17-77
+54-->C:\Users\nived\OneDrive\Desktop\Nived\4thYearCourses\MobileAppDev\FinalProject\AutoGram\app\src\main\AndroidManifest.xml:35:27-74
+55            </intent-filter>
+56        </activity>
+57        <activity
+57-->C:\Users\nived\OneDrive\Desktop\Nived\4thYearCourses\MobileAppDev\FinalProject\AutoGram\app\src\main\AndroidManifest.xml:38:9-40:40
+58            android:name="com.example.autogram.create_note"
+58-->C:\Users\nived\OneDrive\Desktop\Nived\4thYearCourses\MobileAppDev\FinalProject\AutoGram\app\src\main\AndroidManifest.xml:39:13-40
+59            android:exported="false" />
+59-->C:\Users\nived\OneDrive\Desktop\Nived\4thYearCourses\MobileAppDev\FinalProject\AutoGram\app\src\main\AndroidManifest.xml:40:13-37
+60
+61        <provider
+61-->[androidx.emoji2:emoji2:1.2.0] C:\Users\nived\.gradle\caches\transforms-3\316a02c860c73ab94686517a17339332\transformed\emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
+62            android:name="androidx.startup.InitializationProvider"
+62-->[androidx.emoji2:emoji2:1.2.0] C:\Users\nived\.gradle\caches\transforms-3\316a02c860c73ab94686517a17339332\transformed\emoji2-1.2.0\AndroidManifest.xml:25:13-67
+63            android:authorities="com.example.autogram.androidx-startup"
+63-->[androidx.emoji2:emoji2:1.2.0] C:\Users\nived\.gradle\caches\transforms-3\316a02c860c73ab94686517a17339332\transformed\emoji2-1.2.0\AndroidManifest.xml:26:13-68
+64            android:exported="false" >
+64-->[androidx.emoji2:emoji2:1.2.0] C:\Users\nived\.gradle\caches\transforms-3\316a02c860c73ab94686517a17339332\transformed\emoji2-1.2.0\AndroidManifest.xml:27:13-37
+65            <meta-data
+65-->[androidx.emoji2:emoji2:1.2.0] C:\Users\nived\.gradle\caches\transforms-3\316a02c860c73ab94686517a17339332\transformed\emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
+66                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+66-->[androidx.emoji2:emoji2:1.2.0] C:\Users\nived\.gradle\caches\transforms-3\316a02c860c73ab94686517a17339332\transformed\emoji2-1.2.0\AndroidManifest.xml:30:17-75
+67                android:value="androidx.startup" />
+67-->[androidx.emoji2:emoji2:1.2.0] C:\Users\nived\.gradle\caches\transforms-3\316a02c860c73ab94686517a17339332\transformed\emoji2-1.2.0\AndroidManifest.xml:31:17-49
+68            <meta-data
+68-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\nived\.gradle\caches\transforms-3\b53648139df62eed3ac1693b02c07adb\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:31:13-33:52
+69                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+69-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\nived\.gradle\caches\transforms-3\b53648139df62eed3ac1693b02c07adb\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:32:17-78
+70                android:value="androidx.startup" />
+70-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\nived\.gradle\caches\transforms-3\b53648139df62eed3ac1693b02c07adb\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:33:17-49
+71        </provider>
+72    </application>
+73
+74</manifest>

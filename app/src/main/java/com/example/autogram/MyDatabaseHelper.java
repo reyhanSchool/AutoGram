@@ -16,7 +16,7 @@ import java.util.List;
 
 public class MyDatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "AutoGram.db";
-    private static final int DATABASE_VERSION = 15;
+    private static final int DATABASE_VERSION = 17;
     private static final String FIRST_NAME = "firstName";
     private static final String LAST_NAME = "lastName";
     private static final String USERNAME = "username";
@@ -66,6 +66,8 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
                 + "FOREIGN KEY(" + SUBSCRIBER_ID + ") REFERENCES user(id),"
                 + "FOREIGN KEY(" + SUBSCRIPTION_ID + ") REFERENCES user(id))"
                 + ";");
+
+
     }
 
     @Override

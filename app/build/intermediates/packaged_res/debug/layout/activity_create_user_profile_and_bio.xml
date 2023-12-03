@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:context=".CreateUserProfileAndBio">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <include
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            layout="@layout/header_with_app_picture" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/uploadProfilePic"
+        android:layout_width="200dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="150dp"
+        android:clickable="true"
+        android:onClick="showPopup"
+        android:padding="10dp"
+        android:visibility="visible"
+        android:src="@drawable/add_photo" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/userProfileDisplayName"
+        android:layout_width="match_parent"
+        android:layout_marginTop="350dp"
+        android:layout_height="60dp"
+        android:background="@android:color/white">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/displayName"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Enter your profile name" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/userProfileBio"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="450dp"
+        android:background="@android:color/white">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/displayBio"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:hint="What would you like others to know about you?" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="600dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit Info"
+        android:onClick="this"
+        tools:ignore="onClick"
+        android:id="@+id/submitInfo"/>
+
+</FrameLayout>
+

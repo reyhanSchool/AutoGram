@@ -62,7 +62,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.NoteViewHolder
             super(itemView);
             titleTextView = itemView.findViewById(R.id.noteTitle);
             contentTextView = itemView.findViewById(R.id.noteContent);
-            noteImage = itemView.findViewById(R.id.imageView2); // Initialize the ImageView field
+            noteImage = itemView.findViewById(R.id.postImage); // Initialize the ImageView field
         }
     }
 
