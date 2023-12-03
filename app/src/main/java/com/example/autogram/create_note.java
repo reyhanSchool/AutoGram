@@ -57,10 +57,12 @@ public class create_note extends AppCompatActivity {
     ImageView postPhoto = null;
     Button deleteButton, createNoteButton;
     MyDatabaseHelper dbHelper;
+    SQLiteDatabase db;
     private static final int REQUEST_IMAGE_CAPTURE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_note);
 
@@ -75,7 +77,7 @@ public class create_note extends AppCompatActivity {
         createNoteButton = findViewById(R.id.createNoteButton);
 
         dbHelper = new MyDatabaseHelper(this);
-
+        db = dbHelper.getWritableDatabase();
         Intent intent = getIntent();
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -163,7 +165,22 @@ public class create_note extends AppCompatActivity {
                         Bitmap postPhotoConverted = ((BitmapDrawable) postPhoto.getDrawable()).getBitmap();
 
                         try{
-                            dbHelper.insertPhotoIntoDatabase(userProfileName, title, content, postPhotoConverted);
+
+                                ContentValues values = new ContentValues();
+                                values.put("username", userProfileName);
+                                values.put("title", title);
+                                values.put("content", content);
+
+                                //Convert the Bitmap to BLOB
+                                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                                postPhotoConverted.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                                byte[] byteArray = stream.toByteArray();
+                                values.put("image_data", byteArray);
+
+                                //insert to database
+                                db.insert("post", null, values);
+
+
                             Toast.makeText(create_note.this, "Saved Successfully", Toast.LENGTH_SHORT).show();
                             // Optionally, you can navigate back to the main activity or do something else
                             Intent backToMainIntent = new Intent(create_note.this, HomePage.class);
