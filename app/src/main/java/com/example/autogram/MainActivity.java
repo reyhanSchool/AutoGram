@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity{
     private MyDatabaseHelper dbHelper;
     private static final String PREFS_NAME = "LoginPrefs";
     private static final String KEY_USERNAME = "username";
+    private static final String KEY_PASSWORD = "password";
     private static final String KEY_LOGGED_IN = "loggedIn";
     //This should be the page after the user has logged in
     @Override
@@ -47,27 +48,33 @@ public class MainActivity extends AppCompatActivity{
         usernameInput = findViewById(R.id.usernameInput);
         passwordInput = findViewById(R.id.passwordInput);
         dbHelper = new MyDatabaseHelper(this);
-
+        if (isLoggedIn()) {
+            String savedUsername = getSavedUsername();
+            String savedPassword = getSavedPassword();
+            Cursor userCursor = dbHelper.isValidCredentials(savedUsername, savedPassword);
+            navigateToUserProfile(userCursor);
+        }
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Validate username and password
-                String username = usernameInput.getText().toString().trim();
-                String password = passwordInput.getText().toString().trim();
 
-                if (TextUtils.isEmpty(username) || TextUtils.isEmpty(password)){
-                    showToast("Username and Password is both required");
-                }else{
-                    //Check if there is a match in the database
-                    Cursor userCursor = dbHelper.isValidCredentials(username, password);
-                    if(userCursor !=null){
-                        saveLoginSession(username);
-                        navigateToUserProfile(userCursor);
-                    }
-                    else{
-                        showToast("Invalid username or password");
-                    }//inner else statement
-                }//else statement
+                    String username = usernameInput.getText().toString().trim();
+                    String password = passwordInput.getText().toString().trim();
+
+                    if (TextUtils.isEmpty(username) || TextUtils.isEmpty(password)) {
+                        showToast("Username and Password is both required");
+                    } else {
+                        //Check if there is a match in the database
+                        Cursor userCursor = dbHelper.isValidCredentials(username, password);
+                        if (userCursor != null) {
+                            saveLoginSession(username, password);
+                            navigateToUserProfile(userCursor);
+                        } else {
+                            showToast("Invalid username or password");
+                        }//inner else statement
+                    }//else statement
+
             }
         });//Sign in Button OnClickListener Function
 
@@ -81,24 +88,43 @@ public class MainActivity extends AppCompatActivity{
         });
 
     }
-        private void saveLoginSession(String username) {
+        private void saveLoginSession(String username, String password) {
             SharedPreferences preferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = preferences.edit();
             editor.putString(KEY_USERNAME, username);
+            editor.putString(KEY_PASSWORD, password);
             editor.putBoolean(KEY_LOGGED_IN, true);
             editor.apply();
+        }
+        private String getSavedUsername() {
+            SharedPreferences preferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+            return preferences.getString(KEY_USERNAME, "");
+        }
+        private String getSavedPassword() {
+            SharedPreferences preferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+            return preferences.getString(KEY_PASSWORD, "");
+        }
+        private boolean isLoggedIn() {
+            SharedPreferences preferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+            System.out.println(preferences.getBoolean(KEY_LOGGED_IN, false));
+            return preferences.getBoolean(KEY_LOGGED_IN, false);
         }
 
 
         private void navigateToUserProfile(Cursor userCursor) {
-            // Extract user information from the cursor
-            @SuppressLint("Range") String userProfileUsername = userCursor.getString(userCursor.getColumnIndex("username"));
-            showToast(userProfileUsername);
-            // Start UserProfile activity and pass user information
-            Intent userProfileIntent = new Intent(MainActivity.this, UserProfile.class);
-            userProfileIntent.putExtra("USERNAME", userProfileUsername);
-            startActivity(userProfileIntent);
+            if (userCursor != null && userCursor.moveToFirst()) {
+                // Extract user information from the cursor
+                @SuppressLint("Range") String userProfileUsername = userCursor.getString(userCursor.getColumnIndex("username"));
+                showToast("Hi, "+userProfileUsername+"!");
+                // Start UserProfile activity and pass user information
+                Intent userProfileIntent = new Intent(MainActivity.this, HomePage.class);
+                userProfileIntent.putExtra("USERNAME", userProfileUsername);
+                startActivity(userProfileIntent);
+            } else {
+                showToast("No user found"); // Or handle the case when userCursor is null
+            }
         }
+
 
         private void showToast(String s) {
             Toast.makeText(MainActivity.this, s, Toast.LENGTH_SHORT).show();

@@ -201,12 +201,7 @@ public class create_note extends AppCompatActivity {
 
         cameraLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
-                new ActivityResultCallback<ActivityResult>() {
-                    @Override
-                    public void onActivityResult(ActivityResult result) {
-                        handleCameraResult(result);
-                    }
-                }
+                result -> handleCameraResult(result)
         );
 
 

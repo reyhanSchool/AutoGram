@@ -67,7 +67,6 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
                 + "FOREIGN KEY(" + SUBSCRIPTION_ID + ") REFERENCES user(id))"
                 + ";");
 
-
     }
 
 
