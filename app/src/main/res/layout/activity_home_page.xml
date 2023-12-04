@@ -74,9 +74,9 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerViewHomePage"
                     android:layout_width="match_parent"
-                    android:layout_height="355dp"
+                    android:layout_height="500dp"
                     android:layout_margin="10dp"
-                    android:background="@color/white" />
+                    android:background="@color/black" />
 
                 <include
                     android:layout_height="70dp"

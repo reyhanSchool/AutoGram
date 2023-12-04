@@ -11,6 +11,7 @@ color purple_700
 color teal_200
 color teal_700
 color white
+dimen spacing
 drawable add_photo
 drawable audi
 drawable bg_white_rounded
@@ -35,6 +36,7 @@ id FollowButton
 id backToLogin
 id bioContainer
 id bioDisplay
+id bottom_navigation
 id cancelUpload
 id commentButton
 id createNoteButton
@@ -43,6 +45,7 @@ id displayBio
 id displayName
 id firstNameInput
 id frameLayout
+id headerContainer
 id imageView
 id lastNameInput
 id likeButton
@@ -86,8 +89,10 @@ id userLastName
 id userLoginName
 id userPassword
 id userPostings
+id userPostingsTitle
 id userProfileBio
 id userProfileDisplayName
+id userProfileTitle
 id userSelectedPhoto
 id usernameDisplay
 id usernameInput

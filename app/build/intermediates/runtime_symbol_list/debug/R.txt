@@ -2820,6 +2820,7 @@ int dimen notification_small_icon_size_as_large 0x7f0702fb
 int dimen notification_subtext_size 0x7f0702fc
 int dimen notification_top_pad 0x7f0702fd
 int dimen notification_top_pad_large_text 0x7f0702fe
+int dimen spacing 0x7f070307
 int dimen tooltip_corner_radius 0x7f0702ff
 int dimen tooltip_horizontal_padding 0x7f070300
 int dimen tooltip_margin 0x7f070301
@@ -3126,6 +3127,7 @@ int id bioContainer 0x7f0a005e
 int id bioDisplay 0x7f0a005f
 int id blocking 0x7f0a0060
 int id bottom 0x7f0a0061
+int id bottom_navigation 0x7f0a022a
 int id bounce 0x7f0a0062
 int id bounceBoth 0x7f0a0063
 int id bounceEnd 0x7f0a0064
@@ -3246,6 +3248,7 @@ int id graph_wrap 0x7f0a00d6
 int id group_divider 0x7f0a00d7
 int id grouping 0x7f0a00d8
 int id groups 0x7f0a00d9
+int id headerContainer 0x7f0a022b
 int id header_title 0x7f0a00da
 int id hideable 0x7f0a00db
 int id home 0x7f0a00dc
@@ -3558,8 +3561,10 @@ int id userLastName 0x7f0a020c
 int id userLoginName 0x7f0a020d
 int id userPassword 0x7f0a020e
 int id userPostings 0x7f0a020f
+int id userPostingsTitle 0x7f0a022c
 int id userProfileBio 0x7f0a0210
 int id userProfileDisplayName 0x7f0a0211
+int id userProfileTitle 0x7f0a022d
 int id userSelectedPhoto 0x7f0a0212
 int id usernameDisplay 0x7f0a0213
 int id usernameInput 0x7f0a0214

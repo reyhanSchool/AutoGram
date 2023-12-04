@@ -134,7 +134,7 @@
             android:id="@+id/totalLikes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="5 Likes"
+            android:text="0 Likes"
             android:textSize="16sp" />
 
         <TextView

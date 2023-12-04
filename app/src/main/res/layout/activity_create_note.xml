@@ -36,7 +36,8 @@
                     android:layout_weight="1"
                     android:background="#00FFFFFF"
                     android:src="@android:drawable/ic_menu_revert"
-                    app:tint="#6750A3" />
+                    app:tint="#6750A3"
+                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                 <TextView
                     android:id="@+id/pageTitle"

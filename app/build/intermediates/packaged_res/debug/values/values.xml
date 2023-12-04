@@ -24,6 +24,7 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="white">#FFFFFFFF</color>
+    <dimen name="spacing">20dp</dimen>
     <string name="app_name">AutoGram</string>
     <string name="defaultUserName">\@GeorgeEnglish</string>
     <style name="Theme.AutoGram" parent="Theme.MaterialComponents.DayNight.NoActionBar">

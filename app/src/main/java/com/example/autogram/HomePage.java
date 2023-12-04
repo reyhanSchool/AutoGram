@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.SearchView;
@@ -85,6 +86,25 @@ public class HomePage extends AppCompatActivity implements SearchView.OnQueryTex
         dbHelper = new MyDatabaseHelper(this);
         recyclerView = findViewById(R.id.recyclerViewHomePage);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        // After setting the layout manager for your RecyclerView
+        int spacingInPixels = getResources().getDimensionPixelSize(R.dimen.spacing); // Adjust spacing as needed
+        recyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
+            @Override
+            public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+                outRect.left = spacingInPixels;
+                outRect.right = spacingInPixels;
+                outRect.bottom = spacingInPixels;
+
+                // Add top margin only for the first item to avoid double space between items
+                if (parent.getChildAdapterPosition(view) == 0) {
+                    outRect.top = spacingInPixels;
+                } else {
+                    outRect.top = 0;
+                }
+            }
+        });
+
 
         // Read data from the database
         notes = readNotesFromDatabase();

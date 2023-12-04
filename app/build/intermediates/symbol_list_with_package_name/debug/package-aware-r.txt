@@ -2821,6 +2821,7 @@ dimen notification_small_icon_size_as_large
 dimen notification_subtext_size
 dimen notification_top_pad
 dimen notification_top_pad_large_text
+dimen spacing
 dimen tooltip_corner_radius
 dimen tooltip_horizontal_padding
 dimen tooltip_margin
@@ -3127,6 +3128,7 @@ id bioContainer
 id bioDisplay
 id blocking
 id bottom
+id bottom_navigation
 id bounce
 id bounceBoth
 id bounceEnd
@@ -3247,6 +3249,7 @@ id graph_wrap
 id group_divider
 id grouping
 id groups
+id headerContainer
 id header_title
 id hideable
 id home
@@ -3559,8 +3562,10 @@ id userLastName
 id userLoginName
 id userPassword
 id userPostings
+id userPostingsTitle
 id userProfileBio
 id userProfileDisplayName
+id userProfileTitle
 id userSelectedPhoto
 id usernameDisplay
 id usernameInput
