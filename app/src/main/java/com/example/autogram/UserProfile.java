@@ -3,7 +3,9 @@ package com.example.autogram;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -27,6 +29,8 @@ public class UserProfile extends AppCompatActivity {
     private FloatingActionButton createPost;
     private Button toHome, toUserProfile;
     MyDatabaseHelper dbHelper;
+    private static final String PREFS_NAME = "LoginPrefs";
+    private static final String KEY_LOGGED_IN = "loggedIn";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,5 +84,9 @@ public class UserProfile extends AppCompatActivity {
             }
         });
 
+    }
+    private boolean isLoggedIn() {
+        SharedPreferences preferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        return preferences.getBoolean(KEY_LOGGED_IN, false);
     }
 }

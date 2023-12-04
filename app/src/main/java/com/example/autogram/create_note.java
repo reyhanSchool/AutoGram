@@ -3,7 +3,9 @@ package com.example.autogram;
 import android.Manifest;
 import android.app.Activity;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -46,6 +48,8 @@ import java.util.Locale;
 
 public class create_note extends AppCompatActivity {
 
+    private static final String PREFS_NAME = "LoginPrefs";
+    private static final String KEY_USERNAME = "username";
     private int selectedColor = 16770541; // To store the selected color
     private static final int CAMERA_REQUEST = 1888;
     private static ActivityResultLauncher<Intent> cameraLauncher;
@@ -59,6 +63,7 @@ public class create_note extends AppCompatActivity {
     MyDatabaseHelper dbHelper;
     SQLiteDatabase db;
     private static final int REQUEST_IMAGE_CAPTURE = 1;
+    private int postId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +84,7 @@ public class create_note extends AppCompatActivity {
         dbHelper = new MyDatabaseHelper(this);
         db = dbHelper.getWritableDatabase();
         Intent intent = getIntent();
-
+        postId = intent.getIntExtra("NOTE_ID", -1);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                 // Camera permission has not been granted, request it
@@ -163,20 +168,18 @@ public class create_note extends AppCompatActivity {
                     Toast.makeText(create_note.this,"Please enter a title", Toast.LENGTH_LONG).show();
                 } else {
                         Bitmap postPhotoConverted = ((BitmapDrawable) postPhoto.getDrawable()).getBitmap();
-
+                        String savedUsername = getSavedUsername();
                         try{
 
                                 ContentValues values = new ContentValues();
-                                values.put("username", userProfileName);
                                 values.put("title", title);
                                 values.put("content", content);
-
-                                //Convert the Bitmap to BLOB
-                                ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                                postPhotoConverted.compress(Bitmap.CompressFormat.PNG, 100, stream);
-                                byte[] byteArray = stream.toByteArray();
-                                values.put("image_data", byteArray);
-
+                                // If an image is selected, convert it to a byte array and store it in the database
+                                Bitmap imageBitmap = ((BitmapDrawable) postPhoto.getDrawable()).getBitmap();
+                                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+                                imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
+                                byte[] imageBytes = outputStream.toByteArray();
+                                values.put("image_data", imageBytes);
                                 //insert to database
                                 db.insert("post", null, values);
 
@@ -214,6 +217,12 @@ public class create_note extends AppCompatActivity {
         );
 
     } //End of OnCreate
+
+    private String getSavedUsername() {
+        SharedPreferences preferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        return preferences.getString(KEY_USERNAME, "");
+    }
+
 
     private Note getNoteFromDatabase(int noteId) {
         MyDatabaseHelper dbHelper = new MyDatabaseHelper(this);

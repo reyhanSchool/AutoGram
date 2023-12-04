@@ -70,12 +70,14 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Handle database upgrades here
         db.execSQL("DROP TABLE IF EXISTS your_table_name");
         onCreate(db);
     }
+
 
     //Insert new users into database
     public long insertDataIntoDatabase(String firstName, String lastName, String username, String email, String password) {
@@ -137,18 +139,24 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 
     //This function should return the user bio from the database
     public String getUserBio(String userProfileName) {
-        db=this.getReadableDatabase();
-        String query = "SELECT " + PROFILEBIO +
-                " FROM user" +
-                " WHERE " + USERNAME + " = ?";
+        if (userProfileName != null && !userProfileName.isEmpty()) {
+            db = this.getReadableDatabase();
+            String query = "SELECT " + PROFILEBIO +
+                    " FROM user" +
+                    " WHERE " + USERNAME + " = ?";
 
-        Cursor cursor = db.rawQuery(query, new String[]{userProfileName});
-        String userBio = null;
-        if(cursor.moveToFirst()){
-            userBio = cursor.getString(cursor.getColumnIndexOrThrow(PROFILEBIO));
+            Cursor cursor = db.rawQuery(query, new String[]{userProfileName});
+            String userBio = null;
+            if(cursor.moveToFirst()){
+                userBio = cursor.getString(cursor.getColumnIndexOrThrow(PROFILEBIO));
+            }
+            cursor.close(); // Close the cursor when finished
+            return userBio;
+        } else {
+            return null; // Or handle the case where userProfileName is null or empty
         }
-        return userBio;
     }
+
 
     //Method to insert a subscription
     public long insertSubscription(long subscriberId, long subcriptionId){

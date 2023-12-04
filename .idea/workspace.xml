@@ -11,6 +11,9 @@
   <component name="ChangeListManager">
     <list default="true" id="704c254b-eae5-41db-b4b0-82c9ef3ae112" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/autogram/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/autogram/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/autogram/MyDatabaseHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/autogram/MyDatabaseHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/autogram/UserProfile.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/autogram/UserProfile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/autogram/create_note.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/autogram/create_note.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -67,6 +70,9 @@
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="2YYYPlx6fQvtTFBrA3V6D4dwjLV" />
   <component name="ProjectViewState">
@@ -187,5 +193,16 @@
       <updated>1700703958247</updated>
     </task>
     <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/autogram/HomePage.java</url>
+          <line>108</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
