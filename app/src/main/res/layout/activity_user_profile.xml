@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,62 +7,100 @@
     android:background="@color/black"
     tools:context=".UserProfile">
 
-    <GridLayout
+    <!-- User Profile Title -->
+    <TextView
+        android:id="@+id/userProfileTitle"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="wrap_content"
+        android:text="User Profile"
+        android:textSize="20sp"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="10dp"
+        android:gravity="center"/>
+
+    <!-- Header Section -->
+    <GridLayout
+        android:id="@+id/headerContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/userProfileTitle"
         android:layout_gravity="top"
-        android:layout_margin="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
         android:background="@color/white"
         android:columnCount="2">
 
-
+        <!-- User Information Container -->
         <LinearLayout
             android:id="@+id/bioContainer"
             android:layout_width="200dp"
-            android:layout_height="match_parent"
-            android:layout_marginTop="5dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/usernameDisplay"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:text="Username Should go here" />
+                android:layout_height="wrap_content"
+                android:text="Username Should go here"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/bioDisplay"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="The user's bio" />
-
+                android:layout_height="wrap_content"
+                android:text="The user's bio"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="14sp" />
 
         </LinearLayout>
 
-
+        <!-- Profile Picture -->
         <ImageView
             android:id="@+id/profilePicture"
             android:layout_width="170dp"
-            android:layout_height="match_parent"
-            tools:srcCompat="@tools:sample/avatars"
-            android:layout_gravity="right"
-            android:layout_margin="10dp"/>
+            android:layout_height="170dp"
+            android:layout_gravity="center_vertical|end"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/defaultprofilepicture"
+            android:scaleType="centerCrop" />
 
     </GridLayout>
 
+    <!-- User Postings Title -->
+    <TextView
+        android:id="@+id/userPostingsTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Posts"
+        android:textSize="18sp"
+        android:textColor="@android:color/white"
+        android:layout_below="@id/headerContainer"
+        android:layout_marginTop="20dp"
+        android:gravity="center"/>
+
+    <!-- User Postings -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/userPostings"
         android:layout_width="match_parent"
-        android:layout_height="455dp"
-        android:layout_below="@id/bioContainer"
-        android:layout_gravity="center"
-        android:layout_marginTop="50dp"
-        android:background="@color/white" />
+        android:layout_height="0dp"
+        android:layout_below="@id/userPostingsTitle"
+        android:layout_above="@+id/bottom_navigation"
+        android:background="@color/white"
+        android:padding="16dp" />
 
-
+    <!-- Bottom Navigation -->
     <include
+        android:id="@+id/bottom_navigation"
         android:layout_height="70dp"
         android:layout_width="match_parent"
-        android:layout_gravity="bottom"
+        android:layout_alignParentBottom="true"
         layout="@layout/bottom_navigation" />
 
-</FrameLayout>
+</RelativeLayout>
