@@ -1,6 +1,8 @@
 package com.example.autogram;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
@@ -10,6 +12,7 @@ import android.view.View;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -21,6 +24,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HomePage extends AppCompatActivity implements SearchView.OnQueryTextListener, PostAdapter.OnItemClickListener  {
+    private static final String KEY_USERNAME = "username";
+    private static final String PREFS_NAME = "LoginPrefs";
+
     private RecyclerView recyclerView;
     private MyDatabaseHelper dbHelper;
     private PostAdapter postAdapter;
@@ -88,6 +94,43 @@ public class HomePage extends AppCompatActivity implements SearchView.OnQueryTex
 
 
     }
+    public void onFollowButtonClick(View view) {
+        TextView followButton = (TextView) view;
+        String buttonText = followButton.getText().toString();
+        SharedPreferences preferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        String followerUsername = preferences.getString(KEY_USERNAME, "");
+        long followerId = dbHelper.getUserIdByUsername(followerUsername);
+
+        View parentView = (View) view.getParent();
+
+        TextView postOwnerUsernameTextView = parentView.findViewById(R.id.postOwnerUsername);
+        String followingUsername = postOwnerUsernameTextView.getText().toString();
+
+        long followingId = dbHelper.getUserIdByUsername(followingUsername);
+
+        if ("Follow".equals(buttonText)) {
+            long newRowId = dbHelper.followUser(followerId, followingId);
+            if (newRowId != -1) {
+                showToast("User Followed");
+                followButton.setText("Unfollow");
+            } else {
+                showToast("Error following user");
+            }
+        } else {
+            int rowsDeleted = dbHelper.unfollowUser(followerId, followingId);
+            if (rowsDeleted > 0) {
+                showToast("User Unfollowed");
+                followButton.setText("Follow");
+            } else {
+                showToast("Error unfollowing user");
+            }
+        }
+    }
+
+    private void showToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
     @Override
     public void onItemClick(int position) {
         // Handle the item click here
@@ -170,16 +213,18 @@ public class HomePage extends AppCompatActivity implements SearchView.OnQueryTex
             // Iterate through the cursor to retrieve notes
             if (cursor2 != null) {
                 while (cursor2.moveToNext()) {
+                    SharedPreferences preferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+
                     String title = cursor2.getString(cursor2.getColumnIndexOrThrow("title"));
                     String content = cursor2.getString(cursor2.getColumnIndexOrThrow("content"));
                     byte[] imageData = cursor2.getBlob(cursor2.getColumnIndexOrThrow("image_data"));
                     int key = cursor2.getInt(cursor2.getColumnIndexOrThrow("id"));
-
+                    String username = preferences.getString(KEY_USERNAME, "");
                     // Convert the byte array to a Bitmap
                     Bitmap imageBitmap = BitmapFactory.decodeByteArray(imageData, 0, imageData.length);
 
                     // Create a Note object and add it to the list
-                    Note note = new Note(title, content, imageBitmap, key);
+                    Note note = new Note(title, content, imageBitmap, key, username);
                     notes.add(note);
                 }
 

@@ -30,6 +30,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.NoteViewHolder
         Note note = noteList.get(position);
         holder.titleTextView.setText(note.getTitle());
         holder.contentTextView.setText(note.getContent());
+        holder.usernameView.setText(note.getUsername());
 
         // Set the image data
         holder.noteImage.setImageBitmap(note.getImage());
@@ -57,12 +58,14 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.NoteViewHolder
         TextView titleTextView;
         TextView contentTextView;
         ImageView noteImage; // Add the ImageView field for the image
+        TextView usernameView;
 
         public NoteViewHolder(View itemView) {
             super(itemView);
             titleTextView = itemView.findViewById(R.id.noteTitle);
             contentTextView = itemView.findViewById(R.id.noteContent);
             noteImage = itemView.findViewById(R.id.postImage); // Initialize the ImageView field
+            usernameView = itemView.findViewById(R.id.postOwnerUsername);
         }
     }
 

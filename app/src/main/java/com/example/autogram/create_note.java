@@ -237,12 +237,14 @@ public class create_note extends AppCompatActivity {
             String title = cursor.getString(cursor.getColumnIndexOrThrow("title"));
             String content = cursor.getString(cursor.getColumnIndexOrThrow("content"));
             byte[] imageData = cursor.getBlob(cursor.getColumnIndexOrThrow("image_data"));
+            SharedPreferences preferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+            String username = preferences.getString(KEY_USERNAME, "");
 
             Bitmap imageBitmap = BitmapFactory.decodeByteArray(imageData, 0, imageData.length);
 
             cursor.close();
 
-            return new Note(title, content, imageBitmap, noteId);
+            return new Note(title, content, imageBitmap, noteId, username);
         }
 
         return null;

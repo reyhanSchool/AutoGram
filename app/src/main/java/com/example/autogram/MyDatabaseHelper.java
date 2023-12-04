@@ -16,7 +16,7 @@ import java.util.List;
 
 public class MyDatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "AutoGram.db";
-    private static final int DATABASE_VERSION = 17;
+    private static final int DATABASE_VERSION = 18;
     private static final String FIRST_NAME = "firstName";
     private static final String LAST_NAME = "lastName";
     private static final String USERNAME = "username";
@@ -67,6 +67,72 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
                 + "FOREIGN KEY(" + SUBSCRIPTION_ID + ") REFERENCES user(id))"
                 + ";");
 
+        // table for followers
+        db.execSQL("CREATE TABLE IF NOT EXISTS follower ("
+                + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + "follower_id INTEGER,"  // Foreign key referencing the 'user' table
+                + "following_id INTEGER,"  // Foreign key referencing the 'user' table
+                + "FOREIGN KEY(follower_id) REFERENCES user(id),"
+                + "FOREIGN KEY(following_id) REFERENCES user(id))"
+                + ";");
+
+
+    }
+    public long followUser(long followerId, long followingId) {
+        db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("follower_id", followerId);
+        values.put("following_id", followingId);
+
+        long newRowId = db.insert("follower", null, values);
+
+        // Close the database connection
+        db.close();
+
+        return newRowId;
+    }
+
+    public int unfollowUser(long followerId, long followingId) {
+        db = this.getWritableDatabase();
+
+        int rowsDeleted = db.delete(
+                "follower",
+                "follower_id = ? AND following_id = ?",
+                new String[]{String.valueOf(followerId), String.valueOf(followingId)}
+        );
+
+        // Close the database connection
+        db.close();
+
+        return rowsDeleted;
+    }
+
+    public List<Long> getFollowersIds(long userId) {
+        db = this.getReadableDatabase();
+
+        List<Long> followerIds = new ArrayList<>();
+
+        String query = "SELECT " + "follower_id" +
+                " FROM " + "follower" +
+                " WHERE " + "following_id" + " = ?";
+
+        Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(userId)});
+
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                long followerId = cursor.getLong(cursor.getColumnIndexOrThrow("follower_id"));
+                followerIds.add(followerId);
+            } while (cursor.moveToNext());
+
+            // Close the cursor
+            cursor.close();
+        }
+
+        // Close the database
+        db.close();
+
+        return followerIds;
     }
 
 
@@ -239,7 +305,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    private long getUserIdByUsername(String username){
+    public long getUserIdByUsername(String username){
         db = this.getReadableDatabase();
 
         String query = "SELECT id FROM user WHERE " + USERNAME + " = ?";

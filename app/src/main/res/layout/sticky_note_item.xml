@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/border"
-    android:backgroundTint="@color/white"
+    android:backgroundTint="#FFFFFF"
     android:orientation="vertical"
     android:outlineAmbientShadowColor="#00FFFFFF"
     android:outlineProvider="none"
@@ -32,12 +32,26 @@
         <TextView
             android:id="@+id/postOwnerUsername"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
             android:text="@string/defaultUserName"
             android:textColor="#000000"
             android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/FollowButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="0"
+            android:clickable="false"
+            android:text="Follow"
+            android:textAllCaps="false"
+            android:textColor="#3563D8"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:onClick="onFollowButtonClick" />
 
     </LinearLayout>
 

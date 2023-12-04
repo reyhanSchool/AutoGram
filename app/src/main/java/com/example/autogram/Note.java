@@ -7,6 +7,7 @@ public class Note {
     private String title;
     private String content;
     private int key;
+    private String username;
 
     public Bitmap getImage() {
         return image;
@@ -19,11 +20,12 @@ public class Note {
         this.key = key;
     }
 
-    public Note(String title, String content, Bitmap image, int key) {
+    public Note(String title, String content, Bitmap image, int key, String username) {
         this.title = title;
         this.content = content;
         this.image = image;
         this.key = key;
+        this.username = username;
     }
 
     public String getTitle() {
@@ -34,4 +36,7 @@ public class Note {
         return content;
     }
 
+    public String getUsername() {
+        return username;
+    }
 }
