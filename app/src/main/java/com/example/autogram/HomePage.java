@@ -33,7 +33,7 @@ public class HomePage extends AppCompatActivity implements SearchView.OnQueryTex
     private List<Note> notes;
     private FloatingActionButton createNewNote;
     Button toHome,toProfile;
-
+    Button logoutButton;
     //This should be the page after the user has logged in
     //The recyclerview will display
     @Override
@@ -92,8 +92,26 @@ public class HomePage extends AppCompatActivity implements SearchView.OnQueryTex
         recyclerView.setAdapter(postAdapter);
         postAdapter.setOnItemClickListener(this); // Set the click listener
 
+        logoutButton = findViewById(R.id.logoutButton);
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Clear the SharedPreferences to log out the user
+                SharedPreferences preferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.clear();
+                editor.apply();
+
+                // Redirect to the login page
+                Intent intent = new Intent(HomePage.this, MainActivity.class);
+                startActivity(intent);
+                finish(); // Close the current activity
+            }
+        });
+
 
     }
+
     public void onFollowButtonClick(View view) {
         TextView followButton = (TextView) view;
         String buttonText = followButton.getText().toString();

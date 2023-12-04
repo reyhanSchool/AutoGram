@@ -1,7 +1,7 @@
 package com.example.autogram;
 
 import android.graphics.Bitmap;
-
+import android.database.sqlite.SQLiteDatabase;
 public class Note {
     private final Bitmap image;
     private String title;

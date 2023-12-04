@@ -31,6 +31,7 @@ drawable rounded_corner
 drawable transparent_image
 font archivo_semibold
 id CreateNoteFloatingButton
+id FollowButton
 id backToLogin
 id bioContainer
 id bioDisplay
@@ -45,6 +46,7 @@ id frameLayout
 id imageView
 id lastNameInput
 id likeButton
+id logoutButton
 id moreOptionsButton
 id noteContent
 id noteLayout
@@ -73,6 +75,7 @@ id signUpUsername
 id signUpUsernameInput
 id submitInfo
 id textView3
+id toFollowFeed
 id toHomePage
 id toSignUpPage
 id toUserProfile

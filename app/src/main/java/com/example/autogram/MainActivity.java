@@ -109,8 +109,7 @@ public class MainActivity extends AppCompatActivity{
             System.out.println(preferences.getBoolean(KEY_LOGGED_IN, false));
             return preferences.getBoolean(KEY_LOGGED_IN, false);
         }
-
-
+        
         private void navigateToUserProfile(Cursor userCursor) {
             if (userCursor != null && userCursor.moveToFirst()) {
                 // Extract user information from the cursor
@@ -124,7 +123,6 @@ public class MainActivity extends AppCompatActivity{
                 showToast("No user found"); // Or handle the case when userCursor is null
             }
         }
-
 
         private void showToast(String s) {
             Toast.makeText(MainActivity.this, s, Toast.LENGTH_SHORT).show();

@@ -114,6 +114,7 @@ public class create_note extends AppCompatActivity {
                 String title = postTitle.getText().toString();
                 String content = postDescription.getText().toString();
                 dbHelper.deletePhotoFromDatabase(userProfileName, title, content);
+
                 Intent deleteAction = new Intent(create_note.this, HomePage.class);
 
                 startActivity(deleteAction);
@@ -174,6 +175,7 @@ public class create_note extends AppCompatActivity {
                                 ContentValues values = new ContentValues();
                                 values.put("title", title);
                                 values.put("content", content);
+                                values.put("usernameTEXT", savedUsername);
                                 // If an image is selected, convert it to a byte array and store it in the database
                                 Bitmap imageBitmap = ((BitmapDrawable) postPhoto.getDrawable()).getBitmap();
                                 ByteArrayOutputStream outputStream = new ByteArrayOutputStream();

@@ -3034,6 +3034,7 @@ id BOTTOM_START
 id CTRL
 id CreateNoteFloatingButton
 id FUNCTION
+id FollowButton
 id META
 id NO_DEBUG
 id SHIFT
@@ -3281,6 +3282,7 @@ id line3
 id linear
 id listMode
 id list_item
+id logoutButton
 id m3_side_sheet
 id marquee
 id masked
@@ -3529,6 +3531,7 @@ id time
 id title
 id titleDividerNoCustom
 id title_template
+id toFollowFeed
 id toHomePage
 id toSignUpPage
 id toUserProfile

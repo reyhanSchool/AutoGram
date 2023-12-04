@@ -3033,6 +3033,7 @@ int id BOTTOM_START 0x7f0a0002
 int id CTRL 0x7f0a0003
 int id CreateNoteFloatingButton 0x7f0a0004
 int id FUNCTION 0x7f0a0005
+int id FollowButton 0x7f0a0227
 int id META 0x7f0a0006
 int id NO_DEBUG 0x7f0a0007
 int id SHIFT 0x7f0a0008
@@ -3280,6 +3281,7 @@ int id line3 0x7f0a00f9
 int id linear 0x7f0a00fa
 int id listMode 0x7f0a00fb
 int id list_item 0x7f0a00fc
+int id logoutButton 0x7f0a0228
 int id m3_side_sheet 0x7f0a00fd
 int id marquee 0x7f0a00fe
 int id masked 0x7f0a00ff
@@ -3528,6 +3530,7 @@ int id time 0x7f0a01f1
 int id title 0x7f0a01f2
 int id titleDividerNoCustom 0x7f0a01f3
 int id title_template 0x7f0a01f4
+int id toFollowFeed 0x7f0a0229
 int id toHomePage 0x7f0a01f5
 int id toSignUpPage 0x7f0a01f6
 int id toUserProfile 0x7f0a01f7
