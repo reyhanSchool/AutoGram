@@ -12,12 +12,12 @@
         "source": "C:\\Users\\nived\\.gradle\\daemon\\8.0\\com.example.autogram.app-main-31:\\mipmap-xxhdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "C:\\Users\\nived\\.gradle\\daemon\\8.0\\com.example.autogram.app-merged_res-29:\\mipmap-mdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\nived\\.gradle\\daemon\\8.0\\com.example.autogram.app-main-31:\\mipmap-mdpi\\ic_launcher.webp"
-    },
-    {
         "merged": "C:\\Users\\nived\\.gradle\\daemon\\8.0\\com.example.autogram.app-merged_res-29:\\drawable_pink_rounded_button.xml.flat",
         "source": "C:\\Users\\nived\\.gradle\\daemon\\8.0\\com.example.autogram.app-main-31:\\drawable\\pink_rounded_button.xml"
+    },
+    {
+        "merged": "C:\\Users\\nived\\.gradle\\daemon\\8.0\\com.example.autogram.app-merged_res-29:\\mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\nived\\.gradle\\daemon\\8.0\\com.example.autogram.app-main-31:\\mipmap-mdpi\\ic_launcher.webp"
     },
     {
         "merged": "C:\\Users\\nived\\.gradle\\daemon\\8.0\\com.example.autogram.app-merged_res-29:\\drawable_audi.jpg.flat",

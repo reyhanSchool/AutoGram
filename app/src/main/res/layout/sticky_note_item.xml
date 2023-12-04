@@ -141,7 +141,7 @@
             android:id="@+id/postCreatedDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="March 16, 2022"
+            android:text="December 04, 2023"
             android:textSize="16sp" />
 
         <Space
